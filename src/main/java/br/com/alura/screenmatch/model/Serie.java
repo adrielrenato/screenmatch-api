@@ -29,7 +29,7 @@ public class Serie {
     private String poster;
     private String sinopse;
 
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie() {}
@@ -44,9 +44,17 @@ public class Serie {
 
         try {
             this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
-        } catch (OpenAiHttpException e) {
+        } catch (OpenAiHttpException | NullPointerException e) {
             this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse()).trim();
         }
+    }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
     }
 
     public String getId() {
