@@ -1,7 +1,9 @@
 package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.ConsultaChatGPT;
+import br.com.alura.screenmatch.service.traducao.ConsultaMyMemory;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.theokanning.openai.OpenAiHttpException;
 
 import java.util.OptionalDouble;
 
@@ -21,7 +23,12 @@ public class Serie {
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
-        this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
+
+        try {
+            this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
+        } catch (OpenAiHttpException e) {
+            this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse()).trim();
+        }
     }
 
     public String getTitulo() {
