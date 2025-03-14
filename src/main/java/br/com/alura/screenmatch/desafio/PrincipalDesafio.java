@@ -16,7 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.time.LocalDate;
 import java.util.List;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class PrincipalDesafio implements CommandLineRunner {
 
     @Autowired
