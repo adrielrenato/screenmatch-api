@@ -32,4 +32,18 @@ public class SerieService {
     public List<SerieDTO> obterLancamentos() {
         return converteDados(repositorio.encontrarEpisodiosMaisRecentes());
     }
+
+    public SerieDTO obterPorId(String id) {
+        var serie = repositorio.findById(id);
+
+        if (serie.isPresent()) {
+            var serieEncontrada = serie.get();
+
+            return new SerieDTO(serieEncontrada.getId(), serieEncontrada.getTitulo(), serieEncontrada.getTotalTemporadas(),
+                    serieEncontrada.getAvaliacao(), serieEncontrada.getGenero(), serieEncontrada.getAtores(),
+                    serieEncontrada.getPoster(), serieEncontrada.getSinopse());
+        }
+
+        return null;
+    }
 }
