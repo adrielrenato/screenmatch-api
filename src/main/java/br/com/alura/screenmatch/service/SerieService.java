@@ -62,4 +62,12 @@ public class SerieService {
 
         return null;
     }
+
+    public List<EpisodioDTO> obterTemporadaPorNumero(String id, Integer temporada) {
+        return repositorio.obterEpisodiosPorTempora(id, temporada)
+                .stream()
+                    .filter(e -> e.getTemporada().equals(temporada))
+                    .map(e -> new EpisodioDTO(e.getTemporada(), e.getTitulo(), e.getNumeroEpisodio()))
+                    .collect(Collectors.toList());
+    }
 }
