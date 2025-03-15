@@ -7,9 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PedidoDesafioRepository extends JpaRepository<Pedido, Long> {
-    List<Pedido> findByDataEntregaIsNull();
-    List<Pedido> findByDataEntregaIsNotNull();
-    List<Pedido> findByDataPedidoAfter(LocalDate data);
-    List<Pedido> findByDataPedidoBefore(LocalDate data);
-    List<Pedido> findByDataPedidoBetween(LocalDate dataInicio, LocalDate dataFim);
+//    List<Pedido> findByDataEntregaIsNull();
+//    List<Pedido> findByDataEntregaIsNotNull();
+//    List<Pedido> findByDataPedidoAfter(LocalDate data);
+//    List<Pedido> findByDataPedidoBefore(LocalDate data);
+//    List<Pedido> findByDataPedidoBetween(LocalDate dataInicio, LocalDate dataFim);
 }
